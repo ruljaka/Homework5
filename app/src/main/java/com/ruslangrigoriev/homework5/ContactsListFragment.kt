@@ -16,18 +16,6 @@ class ContactsListFragment : Fragment(R.layout.fragment_contacts_list) {
     private lateinit var contactsList: List<Contact>
     private lateinit var adapter: ArrayAdapter<Contact>
 
-    companion object {
-        const val FRAGMENT_LIST_TAG = "FRAGMENT_LIST_TAG"
-        private const val LIST_ARG = "LIST_ARG"
-        fun newInstance() = ContactsListFragment()
-
-        @JvmStatic
-        fun newInstance(contact: Contact) =
-            ContactsListFragment().apply {
-                arguments = bundleOf(LIST_ARG to contact)
-            }
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentContract) {
@@ -38,6 +26,7 @@ class ContactsListFragment : Fragment(R.layout.fragment_contacts_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentContactsListBinding.bind(view)
+
         initList()
         initAdapter()
         setupUI()
@@ -77,5 +66,15 @@ class ContactsListFragment : Fragment(R.layout.fragment_contacts_list) {
         _binding = null
     }
 
+    companion object {
+        const val FRAGMENT_LIST_TAG = "FRAGMENT_LIST_TAG"
+        private const val LIST_ARG = "LIST_ARG"
 
+        fun newInstance() = ContactsListFragment()
+
+        fun newInstance(contact: Contact) =
+            ContactsListFragment().apply {
+                arguments = bundleOf(LIST_ARG to contact)
+            }
+    }
 }

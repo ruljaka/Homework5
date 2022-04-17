@@ -5,9 +5,9 @@ import com.github.javafaker.Faker
 class ContactsService {
 
     private val faker = Faker.instance()
-    val contacts: List<Contact> = (1..15).map {
+    val contacts: List<Contact> = (1..10).map {
         Contact(
-            id = faker.idNumber().valid(),
+            id = it,
             firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             number = faker.phoneNumber().cellPhone()

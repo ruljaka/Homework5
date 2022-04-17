@@ -15,17 +15,6 @@ class ContactDetailsFragment : Fragment(R.layout.fragment_contact_details) {
     private val contact: Contact
         get() = requireArguments().getSerializable(DETAILS_ARG) as Contact
 
-    companion object {
-        const val FRAGMENT_DETAILS_TAG = "FRAGMENT_DETAILS_TAG"
-        private const val DETAILS_ARG = "DETAILS_ARG"
-
-        @JvmStatic
-        fun newInstance(contact: Contact) =
-            ContactDetailsFragment().apply {
-                arguments = bundleOf(DETAILS_ARG to contact)
-            }
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is FragmentContract) {
@@ -52,5 +41,15 @@ class ContactDetailsFragment : Fragment(R.layout.fragment_contact_details) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val FRAGMENT_DETAILS_TAG = "FRAGMENT_DETAILS_TAG"
+        private const val DETAILS_ARG = "DETAILS_ARG"
+
+        fun newInstance(contact: Contact) =
+            ContactDetailsFragment().apply {
+                arguments = bundleOf(DETAILS_ARG to contact)
+            }
     }
 }
